@@ -48,6 +48,11 @@ public class UsuarioServiceImpl implements UserDetailsService, UsuarioService {
 
         Usuario usuario = usuarioRepository.findByUsername(username);
 
+        if(usuario == null){
+            logger.info("Error en login: Usuario no existe con el username " + username);
+            throw new UsernameNotFoundException("Error en login: Usuario no existe con el username " + username);
+        }
+
         List<GrantedAuthority> authorities = usuario.getRoles()
                 .stream()
                 .map(role -> new SimpleGrantedAuthority(role.getNombre()))
