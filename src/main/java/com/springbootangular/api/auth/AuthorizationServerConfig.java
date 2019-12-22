@@ -12,8 +12,6 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.token.AccessTokenConverter;
-import org.springframework.security.oauth2.provider.token.TokenEnhancer;
-import org.springframework.security.oauth2.provider.token.TokenEnhancerChain;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 
 import java.util.ArrayList;
@@ -37,7 +35,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     @Autowired
     @Qualifier("authenticationManager")
     private AuthenticationManager authenticationManager;
-    
+
     /* Metodo que nos permitira definir los permisos de nuestro endpoint, de spring security OAUTH 2, quien puede acceder a la autenticacion
     * 1 - Damos el permiso a todos por permitAll
     * 2 - Asignamos el permiso al endpoint para validar el token. Cada vez que queramos acceder a una pagina protegida tenemos que enviar nuestro token como authorization
