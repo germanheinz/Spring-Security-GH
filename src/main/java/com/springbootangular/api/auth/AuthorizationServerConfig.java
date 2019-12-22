@@ -14,13 +14,15 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Aut
 import org.springframework.security.oauth2.provider.token.AccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 
-import java.util.ArrayList;
-import java.util.List;
-
 
 /*
 * Crea una clase de authorization y extiendo AuthorizationServerConfigurerAdapter
 * Implemento 3 metodos de configuracion
+*
+* 1 - Accedemos mediante el endpoint localhost:8080/oath/token
+* 2 - En body pasamos los parametros: username, password, grant_type (En este caso password)
+* 3 - En Authorization, marcamos Basic Auth, enviar cliente id con su secret, (En este caso angularapp, 12345/ )
+* 4 - Preview Request
 *
 * */
 
@@ -33,7 +35,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     private BCryptPasswordEncoder passwordEncoder;
 
     @Autowired
-    @Qualifier("authenticationManager")
+    @Qualifier("authenticationManagerBean")
     private AuthenticationManager authenticationManager;
 
     /* Metodo que nos permitira definir los permisos de nuestro endpoint, de spring security OAUTH 2, quien puede acceder a la autenticacion

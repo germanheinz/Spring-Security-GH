@@ -9,9 +9,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @SpringBootApplication
 public class ApiApplication implements CommandLineRunner {
 
-    /*@Autowired
+    @Autowired
     private BCryptPasswordEncoder passwordEncoder;
-    */
+
     public static void main(String[] args) {
         SpringApplication.run(ApiApplication.class, args);
     }
@@ -20,9 +20,9 @@ public class ApiApplication implements CommandLineRunner {
     public void run(String... args) throws Exception {
         String password = "12345";
 
-        /*for (int i = 0; i<4; i++){
+        for (int i = 0; i<4; i++){
             String passwordBcrypt = passwordEncoder.encode(password);
             System.out.println(passwordBcrypt);
-        }*/
+        }
     }
 }

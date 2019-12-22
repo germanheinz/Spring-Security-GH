@@ -1,6 +1,6 @@
 package com.springbootangular.api.services;
 
-import api.v1.model.UsuarioDTO;
+import com.springbootangular.api.v1.model.UsuarioDTO;
 
 public interface UsuarioService {
 

@@ -1,4 +1,4 @@
-package api.v1.model;
+package com.springbootangular.api.v1.model;
 
 
 import lombok.*;

@@ -1,11 +1,12 @@
 package com.springbootangular.api.services;
 
-import api.v1.mapper.UsuarioMapper;
-import api.v1.model.UsuarioDTO;
+import com.springbootangular.api.v1.mapper.UsuarioMapper;
+import com.springbootangular.api.v1.model.UsuarioDTO;
 import com.springbootangular.api.domain.Usuario;
 import com.springbootangular.api.repositories.UsuarioRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -13,6 +14,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -31,6 +33,7 @@ public class UsuarioServiceImpl implements UserDetailsService, UsuarioService {
 
     private Logger logger = LoggerFactory.getLogger(UsuarioServiceImpl.class);
 
+
     private final UsuarioMapper usuarioMapper;
     private final UsuarioRepository usuarioRepository;
 
@@ -44,6 +47,7 @@ public class UsuarioServiceImpl implements UserDetailsService, UsuarioService {
         return usuarioMapper.usuarioToUsuarioDTO(usuarioRepository.findByUsername(username));
     }
     @Override
+    @Transactional(readOnly = true)
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
         Usuario usuario = usuarioRepository.findByUsername(username);

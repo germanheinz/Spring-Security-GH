@@ -1,7 +1,7 @@
 package com.springbootangular.api.services;
 
-import api.v1.mapper.UsuarioMapper;
-import api.v1.model.UsuarioDTO;
+import com.springbootangular.api.v1.mapper.UsuarioMapper;
+import com.springbootangular.api.v1.model.UsuarioDTO;
 import com.springbootangular.api.domain.Role;
 import com.springbootangular.api.domain.Usuario;
 import com.springbootangular.api.repositories.UsuarioRepository;

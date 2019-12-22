@@ -1,7 +1,5 @@
 package com.springbootangular.api.auth;
 
-import com.springbootangular.api.services.UsuarioService;
-import com.springbootangular.api.services.UsuarioServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

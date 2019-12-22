@@ -1,11 +1,10 @@
-package api.v1.mapper;
+package com.springbootangular.api.v1.mapper;
 
 
-import api.v1.model.UsuarioDTO;
+import com.springbootangular.api.v1.model.UsuarioDTO;
 import com.springbootangular.api.domain.Usuario;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
-import org.springframework.context.annotation.Bean;
 
 @Mapper
 public interface UsuarioMapper {
