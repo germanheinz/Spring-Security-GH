@@ -11,7 +11,10 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.A
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
+import org.springframework.security.oauth2.provider.token.TokenEnhancerChain;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
+
+import java.util.Arrays;
 
 
 /*
@@ -36,6 +39,9 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     @Autowired
     @Qualifier("authenticationManagerBean")
     private AuthenticationManager authenticationManager;
+
+    @Autowired
+    public InfoAdicionalToken infoAdicionalToken;
 
     /* Metodo que nos permitira definir los permisos de nuestro endpoint, de spring security OAUTH 2, quien puede acceder a la autenticacion
     * 1 - Damos el permiso a todos por permitAll
@@ -73,8 +79,12 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     * */
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
+        TokenEnhancerChain tokenEnhancerChain = new TokenEnhancerChain();
+        tokenEnhancerChain.setTokenEnhancers(Arrays.asList(infoAdicionalToken, accessTokenConverter()));
+
         endpoints.authenticationManager(authenticationManager)
-                .accessTokenConverter(accessTokenConverter());
+                .accessTokenConverter(accessTokenConverter())
+        .tokenEnhancer(tokenEnhancerChain);
     }
     @Bean
     public JwtAccessTokenConverter accessTokenConverter() {
