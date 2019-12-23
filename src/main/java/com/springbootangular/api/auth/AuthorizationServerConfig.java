@@ -26,6 +26,12 @@ import java.util.Arrays;
 * 3 - En Authorization, marcamos Basic Auth, enviar cliente id con su secret, (En este caso angularapp, 12345/ )
 * 4 - Preview Request
 *
+*
+* // Endpoint de Acceso - localhost:8080/oauth/token
+/*  - Pasos para su TEST
+* 1 - En body cargar username, password, grant_type
+* 2 - En Autorization, Basic OAUTH + nombre del cliente y password que se va a conectar, preview request
+* 3 - Enviar mediante POST
 * */
 
 //Configuracion para OATH
