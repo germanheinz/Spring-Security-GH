@@ -11,7 +11,6 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.A
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
-import org.springframework.security.oauth2.provider.token.AccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 
 
@@ -78,8 +77,13 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 .accessTokenConverter(accessTokenConverter());
     }
     @Bean
-    public AccessTokenConverter accessTokenConverter() {
+    public JwtAccessTokenConverter accessTokenConverter() {
         JwtAccessTokenConverter jwtAccessTokenConverter = new JwtAccessTokenConverter();
+        //jwtAccessTokenConverter.setSigningKey(JwtConfig.SECRET_KEY);
+        //El que firma el token es la privada
+        jwtAccessTokenConverter.setSigningKey(JwtConfig.RSA_PRIVATE);
+        //El que valida que nuestro token sea autentico es la publica
+        jwtAccessTokenConverter.setVerifierKey(JwtConfig.RSA_PUBLICA);
         return jwtAccessTokenConverter;
     }
 }
