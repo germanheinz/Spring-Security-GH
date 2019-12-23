@@ -32,6 +32,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
     /*
     * 1 - Indico cuales son las paginas que pueden acceder todos los usuarios independientemente si esta logueado o no
     * */
+    // Seguridad a nuestros servicios de forma pragmatica con HTTPSecurity
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests().antMatchers(HttpMethod.GET, "/api/clientes", "/api/clientes/page/**", "/api/clientes/upload/img/**", "/images/**")
